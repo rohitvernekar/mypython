@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+import json
+import requests
+import datetime
+
+
+Pass_key = ""
+repos = ['mypython'] # Add all repo's you want to automerged here
+ignore_branches = ['release', 'staging', 'development'] # Add 'master' here if you don't want to automerge into master
+
+def print_message(merging):
+  if merging == True:
+    message = "Merging: "
+  else:
+    message = "Not merging: "
+  print message + str(pr_id) + " - " + user + " wants to merge " + head_ref + " into " + base_ref
+
+
+# Merge the actual pull request
+def merge_pr():
+  req = requests.put("https://api.github.com/repos/grohit/%s/pulls/%d/merge"%(repo,pr_id,),
+    data=json.dumps({"commit_message": "Auto_Merge"}),
+    auth=('grohit', Pass_key))
+  if "merged" in req.json() and req.json()["merged"]==True:
+    print "Merged: " + req.json()['sha']
+  else:
+    print "Failed: " + req.json()['message']
+
+
+# Main
+import pdb;pdb.set_trace()
+print datetime.datetime.now()
+
+for repo in repos:
+  req = requests.get('https://api.github.com/repos/grohit/%s/pulls'%repo, auth=('grohit', Pass_key))
+  data = req.json()
+
+  for i in data:
+    head_ref=i["head"]["ref"]
+    base_ref=i["base"]["ref"]
+    user=i["user"]["login"]
+    pr_id = i["number"]
+    if base_ref in ignore_branches:
+      print_message(False)
+    else:
+      print_message(True)
+      merge_pr()
+
