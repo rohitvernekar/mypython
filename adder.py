@@ -8,4 +8,3 @@ while True:
     else:
         sum += int(line)                   # was sting.atoi() in 2nd ed
 print(sum)
-#Better to write in function
