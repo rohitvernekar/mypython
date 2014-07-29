@@ -1,0 +1,4 @@
+mypython
+========
+
+python practices
