@@ -34,10 +34,10 @@ class PythonOrgSearch(unittest.TestCase):
         driver.find_element_by_xpath(xpaths['passwordTxtBox']).send_keys("Attitudere-defined4394")               
         driver.find_element_by_xpath(xpaths['submitButton']).click()
         driver.get("https://github.com/zeomega/bcbsma_build/pulls") 
-        all_elements=driver.find_element_by_xpath("//a[@id='issues-container']/div/div[2]/div[1]/div/a[3]")
-        for option in all_elements:
-            print("value is : %s" % option.get_attribute("value"))
-            #option.click()
+        #all_elements=driver.find_element_by_xpath("//a[@id='issues-container']/div/div[2]/div[1]/div/a[3]")
+        #for option in all_elements:
+        #    print("value is : %s" % option.get_attribute("value"))
+        #    #option.click()
 
     def tearDown(self):
         #self.driver.close()
