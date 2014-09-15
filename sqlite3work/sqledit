@@ -54,5 +54,32 @@ amfcr10     1           buildartifactname.tar
 bcbsmar5    2           buildartifactname.tar
 
 
+creating table
+------------------------------------------------
+create table if not exists releaseinfo(
+Id text not null primary key,
+Client_name text default none,
+Module text default none,
+Release_id text default none,
+Build_no int default 0,
+Artifact_name text default none);
 
+import pdb;pdb.set_trace()
+def sqlite3_init():
+    global db_connection
+    global cursor
+    db_connection=sqlite3.connect('buildfinal.db')
+    cursor=db_connection.cursor
+    create_database()
+
+def create_database():
+    sql='create table if not exists releaseinfo(
+Id text not null primary key,
+Client_name text default none,
+Module text default none,
+Release_id text default none,
+Build_no int default 0,
+Artifact_name text default none)'
+    cursor.execute(sql)
+    db_connection.commit()
 

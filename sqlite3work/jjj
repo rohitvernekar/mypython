@@ -1,0 +1,7 @@
+create table if not exists release(
+Id text not null primary key,
+Client_name text default none,
+Module text default none,
+Release_id text default none,
+Build_no int default 0,
+Artifact_name text default none);

@@ -4,7 +4,7 @@ import requests
 import datetime
 
 
-OAUTH_KEY = ""
+OAUTH_KEY = "Attitudere-defined4394"
 repos = ['mypython'] # Add all repo's you want to automerged here
 ignore_branches = ['release', 'staging', 'development'] # Add 'master' here if you don't want to automerge into master
 
